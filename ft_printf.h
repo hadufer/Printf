@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 19:38:34 by hadufer           #+#    #+#             */
-/*   Updated: 2021/08/16 17:02:41 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/08/24 21:22:32 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_printf
 int			ft_printf(const char *fmt, ...);
 void		print_signed(long nb, int base, t_printf *pf);
 void		print_unsigned(unsigned long nb, int base, t_printf *pf);
+void		print_char(int c, t_printf *pf);
+void		print_string(char *str, t_printf *pf);
 int			flag_handler(const char *fmt, size_t *i, t_printf *pf);
 int			width_handler(const char *fmt, size_t *i, t_printf *pf);
 int			precision_handler(const char *fmt, size_t *i, t_printf *pf);

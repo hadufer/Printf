@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 19:39:09 by hadufer           #+#    #+#             */
-/*   Updated: 2021/08/20 02:32:06 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/08/24 21:23:30 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-t_printf	*init_pf(void)
+static t_printf	*reset_pf(t_printf *pf)
 {
-	t_printf	*pf;
-	pf = malloc(sizeof(pf));
-	if (!pf)
-		return (NULL);
 	pf->prec = -1;
 	pf->ladjust = 0;
 	pf->padc = ' ';
@@ -35,7 +31,7 @@ t_printf	*init_pf(void)
 	return (pf);
 }
 
-void	print_last_percent(const char *fmt, size_t *i, t_printf *pf)
+static void	print_last_percent(const char *fmt, size_t *i, t_printf *pf)
 {
 	if (pf->last_percent == -1)
 		return ;
@@ -50,6 +46,12 @@ void	print_last_percent(const char *fmt, size_t *i, t_printf *pf)
 	}
 }
 
+static int	exit_clean(int i, t_printf	*pf)
+{
+	free(pf);
+	return (i);
+}
+
 int	ft_printf(const char *fmt, ...)
 {
 	t_printf	*pf;
@@ -57,12 +59,13 @@ int	ft_printf(const char *fmt, ...)
 	size_t		i;
 
 	va_start(va_list, fmt);
-	pf = init_pf();
-	i = 0;
+	pf = malloc(sizeof(pf));
 	if (!pf)
-		return (0);
+		return (-1);
+	i = 0;
 	while (fmt[i])
 	{
+		pf = reset_pf(pf);
 		if (fmt[i] != '%')
 			ft_putchar_fd(fmt[i++], 1);
 		else
@@ -70,18 +73,18 @@ int	ft_printf(const char *fmt, ...)
 			pf->last_percent = i;
 			i++;
 			if (flag_handler(fmt, &i, pf) == -1)
-				return (-1);
+				return (exit_clean(-1, pf));
 			if (width_handler(fmt, &i, pf) == -1)
-				return (-1);
+				return (exit_clean(-1, pf));
 			if (fmt[i] == '.')
 			{
 				i++;
 				if (precision_handler(fmt, &i, pf) == -1)
-					return (-1);
+					return (exit_clean(-1, pf));
 			}
 			if (specifier_handler(fmt, &i, pf, va_list) == -1)
 				print_last_percent(fmt, &i, pf);
 		}
 	}
-	return (i);
+	return (exit_clean(i, pf));
 }

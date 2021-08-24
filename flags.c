@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 19:49:28 by hadufer           #+#    #+#             */
-/*   Updated: 2021/08/20 02:36:29 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/08/24 21:11:11 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,17 @@ int	precision_handler(const char *fmt, size_t *i, t_printf *pf)
 int	specifier_handler(const char *fmt, size_t *i, t_printf *pf, va_list va_list)
 {
 	if (fmt[*i] == 'c')
-		ft_putchar_fd(va_arg(va_list, int), 1);
+		print_char(va_arg(va_list, int), pf);
 	else if (fmt[*i] == 's')
-		ft_putstr_fd(va_arg(va_list, char *), 1);
+		print_string(va_arg(va_list, char *), pf);
 	else if (fmt[*i] == 'u')
 		print_unsigned(va_arg(va_list, unsigned int), 10, pf);
-	else if (fmt[*i] == 'p' || fmt[*i] == 'x')
+	else if (fmt[*i] == 'p' || fmt[*i] == 'x' || fmt[*i] == 'X')
 	{
-		if (fmt[*i] == 'p')
+		if (fmt[*i] == 'p' || pf->altfmt)
 			pf->prefix = "0x";
+		if (fmt[*i] == 'X')
+			pf->capitals = 16;
 		print_unsigned(va_arg(va_list, unsigned long), 16, pf);
 	}
 	else if (fmt[*i] == 'i' || fmt[*i] == 'd')
@@ -108,5 +110,4 @@ int	specifier_handler(const char *fmt, size_t *i, t_printf *pf, va_list va_list)
 	else
 		return (-1);
 	(*i)++;
-
 }
