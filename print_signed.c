@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 16:43:59 by hadufer           #+#    #+#             */
-/*   Updated: 2021/08/24 12:19:53 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/08/24 18:24:28 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	int_length(long nb, int base, t_printf *pf)
 
 	count = 1;
 	nb /= base;
-	if (nb < 0 || pf->plus_sign == '+')
+	if (nb < 0 || pf->plus_sign == '+' || pf->plus_sign == ' ')
 		count++;
 	if (nb)
 	{
@@ -56,8 +56,8 @@ void	print_signed(long nb, int base, t_printf *pf)
 	}
 	if (sign_char == '-')
 		ret[i--] = '-';
-	else if (pf->plus_sign == '+')
-		ret[i--] = '+';
+	else if (pf->plus_sign == '+' || pf->plus_sign == ' ')
+		ret[i--] = pf->plus_sign;
 	if (pf->padc == '0' && !pf->ladjust)
 	{
 		while ((--pf->length - (int)ft_strlen(ret)) >= 0)
