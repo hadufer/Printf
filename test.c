@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 20:16:46 by hadufer           #+#    #+#             */
-/*   Updated: 2021/08/24 21:22:10 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/08/29 22:51:54 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main()
 {
 	char *test = malloc(sizeof(char));
 	int	i = 0;
-	printf("%0 2s\n", "s");
-	ft_printf("%0 2s\n", "s");
+	printf("%.0d\n", 0);
+	ft_printf("%.0d\n", 0);
 	return 0;
 }
