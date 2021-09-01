@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 19:39:09 by hadufer           #+#    #+#             */
-/*   Updated: 2021/09/01 18:27:13 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/09/01 18:44:18 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_printf	*reset_pf(t_printf *pf)
 	pf->last_percent = -1;
 	pf->capitals = 0;
 	pf->prefix = NULL;
-	pf->truncate = 0;
+	pf->truncate = 1;
 	return (pf);
 }
 
