@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 19:49:28 by hadufer           #+#    #+#             */
-/*   Updated: 2021/09/01 18:44:37 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/09/01 18:49:00 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	specifier_handler(const char *fmt, size_t *i, t_printf *pf, va_list va_list)
 		print_unsigned(va_arg(va_list, unsigned long), 16, pf);
 	}
 	else if (fmt[*i] == 'i' || fmt[*i] == 'd')
-		print_signed((long)va_arg(va_list, int), 10, pf);
+		print_signed(va_arg(va_list, long), 10, pf);
 	else if (fmt[*i] == '%')
 		ft_putchar_fd('%', 1);
 	else
