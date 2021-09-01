@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 19:49:28 by hadufer           #+#    #+#             */
-/*   Updated: 2021/08/24 21:11:11 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/09/01 18:27:09 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ int	specifier_handler(const char *fmt, size_t *i, t_printf *pf, va_list va_list)
 			pf->prefix = "0x";
 		if (fmt[*i] == 'X')
 			pf->capitals = 16;
+		if (fmt[*i] == 'x')
+			pf->truncate = 1;
 		print_unsigned(va_arg(va_list, unsigned long), 16, pf);
 	}
 	else if (fmt[*i] == 'i' || fmt[*i] == 'd')

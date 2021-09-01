@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 03:49:49 by hadufer           #+#    #+#             */
-/*   Updated: 2021/08/29 22:51:19 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/09/01 18:28:10 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	print_unsigned(unsigned long nb, int base, t_printf *pf)
 
 	if (pf->prec == 0 && nb == 0)
 		return ;
+	if (pf->truncate)
+		nb = (unsigned long)((unsigned int)nb);
 	i = uint_length(nb, base, pf);
 	ret[i--] = 0;
 	ret[i--] = char_list[(nb % base) + pf->capitals];
@@ -62,5 +64,3 @@ void	print_unsigned(unsigned long nb, int base, t_printf *pf)
 	while (pf->ladjust && (--pf->length - (int)ft_strlen(ret)) >= 0)
 		ft_putchar_fd(' ', 1);
 }
-
-

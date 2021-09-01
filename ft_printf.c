@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 19:39:09 by hadufer           #+#    #+#             */
-/*   Updated: 2021/08/24 21:23:30 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/09/01 18:27:13 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static t_printf	*reset_pf(t_printf *pf)
 	pf->last_percent = -1;
 	pf->capitals = 0;
 	pf->prefix = NULL;
+	pf->truncate = 0;
 	return (pf);
 }
 
@@ -46,9 +47,11 @@ static void	print_last_percent(const char *fmt, size_t *i, t_printf *pf)
 	}
 }
 
-static int	exit_clean(int i, t_printf	*pf)
+static int	exit_clean(int i, t_printf	*pf, va_list va_list)
 {
-	free(pf);
+	if (pf)
+		free(pf);
+	va_end(va_list);
 	return (i);
 }
 
@@ -61,7 +64,7 @@ int	ft_printf(const char *fmt, ...)
 	va_start(va_list, fmt);
 	pf = malloc(sizeof(pf));
 	if (!pf)
-		return (-1);
+		exit_clean(-1, pf, va_list);
 	i = 0;
 	while (fmt[i])
 	{
@@ -73,18 +76,18 @@ int	ft_printf(const char *fmt, ...)
 			pf->last_percent = i;
 			i++;
 			if (flag_handler(fmt, &i, pf) == -1)
-				return (exit_clean(-1, pf));
+				return (exit_clean(-1, pf, va_list));
 			if (width_handler(fmt, &i, pf) == -1)
-				return (exit_clean(-1, pf));
+				return (exit_clean(-1, pf, va_list));
 			if (fmt[i] == '.')
 			{
 				i++;
 				if (precision_handler(fmt, &i, pf) == -1)
-					return (exit_clean(-1, pf));
+					return (exit_clean(-1, pf, va_list));
 			}
 			if (specifier_handler(fmt, &i, pf, va_list) == -1)
 				print_last_percent(fmt, &i, pf);
 		}
 	}
-	return (exit_clean(i, pf));
+	return (exit_clean(i, pf, va_list));
 }

@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 19:38:34 by hadufer           #+#    #+#             */
-/*   Updated: 2021/08/24 21:22:32 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/09/01 18:27:11 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_printf
 	int		width_arg;
 	int		prec_arg;
 	int		last_percent;
+	int		truncate;
 	char	*prefix;
 }			t_printf;
 int			ft_printf(const char *fmt, ...);
