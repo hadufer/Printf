@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 19:39:09 by hadufer           #+#    #+#             */
-/*   Updated: 2021/09/01 18:44:18 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/09/03 17:33:32 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	print_last_percent(const char *fmt, size_t *i, t_printf *pf)
 		return ;
 	else
 	{
-		while (pf->last_percent != *i)
+		while ((size_t)pf->last_percent != *i)
 		{
 			ft_putchar_fd(fmt[pf->last_percent], 1);
 			(pf->last_percent)++;
@@ -53,6 +53,23 @@ static int	exit_clean(int i, t_printf	*pf, va_list va_list)
 		free(pf);
 	va_end(va_list);
 	return (i);
+}
+
+int	handler_wrapper(size_t *i, t_printf *pf, va_list va_list, const char *fmt)
+{
+	if (flag_handler(fmt, i, pf) == -1)
+		return (-1);
+	if (width_handler(fmt, i, pf) == -1)
+		return (-1);
+	if (fmt[*i] == '.')
+	{
+		(*i)++;
+		if (precision_handler(fmt, i, pf) == -1)
+			return (-1);
+	}
+	if (specifier_handler(fmt, i, pf, va_list) == -1)
+		print_last_percent(fmt, i, pf);
+	return (0);
 }
 
 int	ft_printf(const char *fmt, ...)
@@ -75,18 +92,8 @@ int	ft_printf(const char *fmt, ...)
 		{
 			pf->last_percent = i;
 			i++;
-			if (flag_handler(fmt, &i, pf) == -1)
+			if (handler_wrapper(&i, pf, va_list, fmt) == -1)
 				return (exit_clean(-1, pf, va_list));
-			if (width_handler(fmt, &i, pf) == -1)
-				return (exit_clean(-1, pf, va_list));
-			if (fmt[i] == '.')
-			{
-				i++;
-				if (precision_handler(fmt, &i, pf) == -1)
-					return (exit_clean(-1, pf, va_list));
-			}
-			if (specifier_handler(fmt, &i, pf, va_list) == -1)
-				print_last_percent(fmt, &i, pf);
 		}
 	}
 	return (exit_clean(i, pf, va_list));

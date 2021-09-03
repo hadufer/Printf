@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/13 19:49:28 by hadufer           #+#    #+#             */
-/*   Updated: 2021/09/01 18:49:00 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/09/03 17:30:19 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	precision_handler(const char *fmt, size_t *i, t_printf *pf)
 					pf->prec = 10 * pf->prec + (fmt[*i] - '0');
 					(*i)++;
 				}
-			return (0);
+				return (0);
 			}
 		}
 		(*i)++;
@@ -112,4 +112,5 @@ int	specifier_handler(const char *fmt, size_t *i, t_printf *pf, va_list va_list)
 	else
 		return (-1);
 	(*i)++;
+	return (0);
 }

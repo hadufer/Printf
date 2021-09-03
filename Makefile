@@ -6,13 +6,18 @@
 #    By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/06 19:55:06 by hadufer           #+#    #+#              #
-#    Updated: 2021/08/19 23:58:02 by hadufer          ###   ########.fr        #
+#    Updated: 2021/09/03 17:35:08 by hadufer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= libft.a
+NAME	= libftprintf.a
 
-SRCS	= $(wildcard *.c)
+SRCS	=	ft_printf.c\
+			flags.c\
+			print_ascii.c\
+			print_signed.c\
+			print_unsigned.c\
+
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -25,7 +30,7 @@ AR		= ar rcs
 CFLAGS = -Wall -Wextra -Werror
 
 %.o: %.c
-			${CC} -c ${CFLAGS} -o $@ $<
+			${CC} -c ${CFLAGS} -I./Libft -o $@ $<
 
 ${NAME}: all
 
@@ -35,9 +40,6 @@ all:	${OBJS}
 
 libft:
 	$(MAKE) -C ./Libft bonus
-
-debug: libft
-			gcc *.c -L./Libft -l:libft.a -I./Libft -g
 
 clean:
 		${RM} ${OBJS}
