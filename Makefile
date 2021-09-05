@@ -39,7 +39,7 @@ $(NAME):	libft ${OBJS}
 			$(AR) ${NAME} ${OBJS}
 
 libft:
-	$(MAKE) -C ./Libft
+	$(MAKE) -C ./Libft bonus
 
 clean:
 		$(MAKE) -C ./Libft $@
