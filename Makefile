@@ -6,7 +6,7 @@
 #    By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/06 19:55:06 by hadufer           #+#    #+#              #
-#    Updated: 2021/09/05 15:28:24 by hadufer          ###   ########.fr        #
+#    Updated: 2021/09/05 17:33:49 by hadufer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS	=	ft_printf.c\
 			print_unsigned.c\
 
 
-OBJS	= ${SRCS:.c=.o}
+OBJS		= ${SRCS:.c=.o}
 
 HEADER	= includes
 
@@ -36,10 +36,11 @@ all: $(NAME)
 
 
 $(NAME):	libft ${OBJS}
-			$(AR) ${NAME} ${OBJS}
+			$(AR) ${NAME} $(OBJS)
 
 libft:
 	$(MAKE) -C ./Libft bonus
+	cp libft/libft.a $(NAME)
 
 clean:
 		$(MAKE) -C ./Libft $@
