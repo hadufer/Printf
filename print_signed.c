@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/16 16:43:59 by hadufer           #+#    #+#             */
-/*   Updated: 2021/09/03 17:16:18 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/12 23:01:10 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	print_signed(long nb, int base, t_printf *pf)
 	int			i;
 	int			sign_char;
 
+	sign_char = 0;
 	if (pf->prec == 0 && nb == 0)
 		return ;
 	if (pf->truncate)
