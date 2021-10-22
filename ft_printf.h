@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/09 19:38:34 by hadufer           #+#    #+#             */
-/*   Updated: 2021/09/03 17:33:01 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/22 16:51:49 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "libft.h"
 # include <stdarg.h>
 # include <stdbool.h>
+
 typedef struct s_printf
 {
 	int		altfmt;

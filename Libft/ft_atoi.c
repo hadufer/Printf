@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 19:07:34 by hadufer           #+#    #+#             */
-/*   Updated: 2021/07/29 19:08:31 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/18 15:32:16 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	mini_strcmp(char *s1, char *s2)
 	return (0);
 }
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	unsigned int	i;
 	int				tmp[2];
@@ -39,15 +39,15 @@ int	ft_atoi(char *str)
 	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
 		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
 		i++;
-	while (str[i] == '+' || str[i] == '-')
+	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
 			tmp[0] *= -1;
 		i++;
 	}
-	if (mini_strcmp(str + i, "2147483647"))
+	if (mini_strcmp((char *)(str + i), "2147483647"))
 		return (INT_MAX * tmp[0]);
-	else if (mini_strcmp(str + i, "-2147483648"))
+	else if (mini_strcmp((char *)(str + i), "-2147483648"))
 		return (INT_MIN * tmp[0]);
 	while (str[i] >= '0' && str[i] <= '9')
 	{

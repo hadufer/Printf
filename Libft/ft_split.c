@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 15:32:44 by hadufer           #+#    #+#             */
-/*   Updated: 2021/08/04 19:01:42 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/18 15:43:08 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ char	**ft_split(char const *str, char c)
 	int		tab[5];
 	char	**ret;
 
-	if (!str || !c)
-		return (NULL);
 	tab[0] = 0;
 	tab[1] = 0;
 	tab[4] = count_word((char *)str, c);

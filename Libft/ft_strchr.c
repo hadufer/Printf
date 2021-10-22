@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 18:46:12 by hadufer           #+#    #+#             */
-/*   Updated: 2021/07/29 18:50:43 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/18 15:22:33 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strchr(const char *s, int c)
 	len = ft_strlen(s) + 1;
 	while (i < len)
 	{
-		if (s[i] == c)
+		if ((unsigned char)(s[i]) == (unsigned char)c)
 			return ((char *)(s + i));
 		i++;
 	}

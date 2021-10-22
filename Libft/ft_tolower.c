@@ -6,7 +6,7 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 18:45:12 by hadufer           #+#    #+#             */
-/*   Updated: 2021/07/29 18:45:46 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/18 11:37:41 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
-		return (c - 32);
+		return (c + 32);
 	return (c);
 }
