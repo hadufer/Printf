@@ -6,13 +6,13 @@
 /*   By: hadufer <hadufer@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 03:49:49 by hadufer           #+#    #+#             */
-/*   Updated: 2021/10/23 09:18:57 by hadufer          ###   ########.fr       */
+/*   Updated: 2021/10/23 12:01:17 by hadufer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	uint_length(long nb, int base)
+static int	uint_length(unsigned long nb, int base)
 {
 	int	count;
 
